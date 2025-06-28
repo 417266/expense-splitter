@@ -1,0 +1,21 @@
+CREATE TABLE transfer (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    amount REAL NOT NULL,
+    friendID INTEGER NOT NULL,
+    FOREIGN KEY (friendID) REFERENCES person(id)
+);
+
+selectAll:
+SELECT * FROM transfer ORDER BY id DESC;
+
+insert:
+INSERT INTO transfer (amount, friendID) VALUES (?, ?);
+
+selectAllWithFriendNames:
+SELECT t.id, t.amount, p.name AS friendName
+FROM transfer t
+JOIN person p ON t.friendID = p.id
+ORDER BY t.id DESC;
+
+delete:
+DELETE FROM transfer WHERE id = ?;

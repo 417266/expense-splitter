@@ -1,0 +1,24 @@
+CREATE TABLE expense (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    amount REAL NOT NULL,
+    payerID INTEGER NOT NULL,
+    FOREIGN KEY (payerID) REFERENCES person(id)
+);
+
+selectAll:
+SELECT * FROM expense ORDER BY id DESC;
+
+insert:
+INSERT INTO expense (name, amount, payerID) VALUES (?, ?, ?);
+
+selectLastInsertedID:
+SELECT last_insert_rowid();
+
+selectAllWithParticipants:
+SELECT e.id AS expenseID, e.name, e.amount, e.payerID, ep.participantID
+FROM expense e
+JOIN expenseParticipant ep ON e.id = ep.expenseID;
+
+delete:
+DELETE FROM expense WHERE id = ?;

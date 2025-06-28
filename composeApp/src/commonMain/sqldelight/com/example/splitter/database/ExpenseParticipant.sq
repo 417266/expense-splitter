@@ -1,0 +1,13 @@
+CREATE TABLE expenseParticipant (
+    expenseID INTEGER NOT NULL,
+    participantID INTEGER NOT NULL,
+    FOREIGN KEY (expenseID) REFERENCES expense(id) ON DELETE CASCADE,
+    FOREIGN KEY (participantID) REFERENCES person(id),
+    PRIMARY KEY (expenseID, participantID)
+);
+
+selectAll:
+SELECT * FROM expenseParticipant;
+
+insert:
+INSERT INTO expenseParticipant (expenseID, participantID) VALUES (?, ?);

@@ -1,0 +1,24 @@
+CREATE TABLE person (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE ON CONFLICT IGNORE
+);
+
+INSERT INTO person VALUES (0, "");
+
+selectAll:
+SELECT * FROM person ORDER BY name;
+
+selectFriends:
+SELECT * FROM person WHERE id != 0 ORDER BY name;
+
+selectByID:
+SELECT * FROM person WHERE id = ?;
+
+insert:
+INSERT INTO person (name) VALUES (?);
+
+delete:
+DELETE FROM person WHERE id = ?;
+
+rename:
+UPDATE person SET name = ? WHERE id = ?;
